@@ -1,4 +1,4 @@
-drunkfiles
+dotfiles
 ==========
 
 My dotfile configurations
