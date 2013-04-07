@@ -1,0 +1,87 @@
+set nocompatible                "cp:    turns off strict vi compatibility
+set ttyfast                     "tf:    improves redrawing for newer computers
+
+execute pathogen#infect()
+
+set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
+
+let g:ctrlp_max_height=20
+
+set showtabline=2
+syntax enable
+colorscheme elflord
+
+if &history < 3000
+  set history=3000
+endif
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set shiftround
+set showcmd
+set incsearch                   "is:    automatically begins searching as you type
+set ignorecase                  "ic:    ignores case when pattern matching
+set smartcase                   "scs:   ignores ignorecase when pattern contains uppercase characters
+"set smarttab      " tab and backspace are smart"
+set hlsearch                    "hls:   highlights search results
+set showmatch
+set ruler
+set scrolloff=3        " keep at least 3 lines above/below"
+set showfulltag        " show full completion tags"
+set backspace=indent,eol,start
+set autoindent
+set switchbuf=usetab
+set nobackup
+set noswapfile
+set noerrorbells visualbell t_vb= " Disable ALL bells"
+set lazyredraw                  "lz:    will not redraw the screen while running macros (goes faster)
+set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp
+set wildmenu                            " Autocomplete features in the status bar
+" Type of wildmenu.
+set wildmode=longest:full,list:full
+set enc=utf-8
+set pastetoggle=<F5>            "pt:    useful so auto-indenting doesn't mess up code when pasting
+
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux'
+  set t_Co=16
+endif
+
+if has("autocmd")
+	"au BufAdd,BufNewFile * nested tab sball
+
+  " In text files, always limit the width of text to 78 characters
+	"autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+  "autocmd BufReadPost *
+  "\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  "\   exe "normal g'\"" |
+  "\ endif
+	"Remove whitespace from ends of lines on save
+	"autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+	" smart indenting for python
+	au FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+	au FileType python set expandtab
+	au FileType coffee set expandtab
+
+	au FileType ruby set expandtab
+	au FileType html set noexpandtab
+	au FileType go set noexpandtab
+endif
+
+if has("mouse")
+	set mouse=a
+endif
+
+map Y "+y
+map P "+p
+map ,t <Esc>:tabnew<CR>

@@ -1,0 +1,73 @@
+[user]
+	name = pkaradimas
+	email = pkaradimas@ngmoco.com
+[github]
+  user = pkaradimas
+[core]
+  excludesfile = ~/.gitignore_global
+  pager = less -S
+	trustctime = false
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  grep = auto
+  interactive = auto
+  ui = auto
+[color "branch"]
+  current = green bold
+  local = green
+  remote = red bold
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green bold
+  changed = yellow bold
+[push]
+  # 'git push' should only do the current branch, not all
+  default = current
+[help]
+  autocorrect = 10
+[merge]
+  summary = true
+[alias]
+  cl = clone
+  ci = commit
+  co = checkout
+  br = branch 
+  diff = diff --word-diff
+  dc = diff --cached
+  dl = "!git ll -1"
+  # Show dif last commit
+  dlc = diff --cached HEAD^
+  delb = "push origin --delete !git"
+  find = "!git ls-files | grep -i"
+  fl = log -u
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  la = "!git config -l | grep alias | cut -c 7-"
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  lasttag = describe --tags --abbrev=0
+  filelog = log -u
+  lt = describe --tags --abbrev=0
+  cp = cherry-pick
+  pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+  st = status -s
+  stl = "for stash in $(git stash list | awk '{print $1}' | sed -e 's/://'); do (echo $stash && git stash show -p $stash); done"
+  unstage = reset HEAD
+    
+[rebase]
+	autosquash = true
